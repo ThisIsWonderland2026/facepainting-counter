@@ -11,33 +11,151 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<<body>
 
-    <main class="login-screen">
 
-        <img src="assets/logo.png" alt="This is Wonderland" class="logo">
+<!-- PAGINA LOGIN -->
 
-        <h1>Face Painting Counter</h1>
+<main id="loginPage" class="login-screen">
 
-        <p class="subtitle">
-            This is Wonderland 2026
-        </p>
+    <img src="assets/logo.png" class="logo">
 
-        <label for="operator">Chi sei?</label>
+    <h1>
+        Face Painting Counter
+    </h1>
 
-        <input
-            type="text"
-            id="operator"
-            placeholder="Inserisci il tuo nome">
 
-        <button id="startButton">
-            Inizia
+    <p class="subtitle">
+        This is Wonderland 2026
+    </p>
+
+
+    <label for="operator">
+        Chi sei?
+    </label>
+
+
+    <input
+        type="text"
+        id="operator"
+        placeholder="Inserisci il tuo nome">
+
+
+    <button id="startButton">
+        Inizia
+    </button>
+
+
+</main>
+
+
+
+
+<!-- PAGINA COUNTER -->
+
+<main id="counterPage" class="counter-screen hidden">
+
+
+    <h1>
+        Face Painting Counter
+    </h1>
+
+
+    <div>
+        👤 Operatore:
+        <span id="operatorName"></span>
+    </div>
+
+
+    <div>
+        📅 Data:
+        <span id="date"></span>
+    </div>
+
+
+
+    <section>
+
+        👧
+
+        <h2>
+            BAMBINO
+        </h2>
+
+
+        <button onclick="registra('Bambino')">
+            +1
         </button>
 
-    </main>
 
-    <script src="app.js"></script>
+        <p>
+            Totale:
+            <span id="childrenTotal">
+                0
+            </span>
+        </p>
+
+    </section>
+
+
+
+
+    <section>
+
+        👨
+
+        <h2>
+            ADULTO
+        </h2>
+
+
+        <button onclick="registra('Adulto')">
+            +1
+        </button>
+
+
+        <p>
+            Totale:
+            <span id="adultTotal">
+                0
+            </span>
+        </p>
+
+    </section>
+
+
+
+
+    <h2>
+        👥 TOTALE GIORNATA
+    </h2>
+
+
+    <span id="dayTotal">
+        0
+    </span>
+
+
+
+
+    <button 
+        id="undoButton"
+        onclick="annullaUltimaRegistrazione()"
+        disabled>
+
+        ↩ Annulla ultima registrazione
+
+    </button>
+
+
+    <div id="message"></div>
+
+
+</main>
+
+
+
+<script src="app.js"></script>
+
 
 </body>
-
-</html>
