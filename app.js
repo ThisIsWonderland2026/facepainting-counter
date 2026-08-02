@@ -3,17 +3,38 @@
 // =============================
 
 
-// DATI GLOBALI
+// =============================
+// DATABASE EVENTO
+// =============================
 
-let storico = JSON.parse(
-    localStorage.getItem("storico")
-) || [];
+let evento = JSON.parse(
+    localStorage.getItem("evento")
+) || {
+    giornate: {}
+};
 
 
 let operatore =
     localStorage.getItem("operatore") || "";
 
 
+// =============================
+// DATA EVENTO CORRENTE
+// =============================
+
+function dataOggi(){
+
+    return new Date()
+        .toLocaleDateString(
+            "it-IT",
+            {
+                day:"2-digit",
+                month:"2-digit",
+                year:"numeric"
+            }
+        );
+
+}
 
 
 // =============================
@@ -23,17 +44,42 @@ let operatore =
 document.addEventListener("DOMContentLoaded", () => {
 
 
-    // Recupera operatore salvato
+    // RIPRISTINO SESSIONE OPERATORE
 
-    const operatoreInput =
-        document.getElementById("operator");
+    if (operatore) {
+
+        const loginPage = document.getElementById("loginPage");
+        const counterPage = document.getElementById("counterPage");
+
+        const nomeBox = document.getElementById("operatorName");
+        const dataBox = document.getElementById("date");
 
 
-    if (operatoreInput && operatore) {
+        if (loginPage) {
+            loginPage.classList.add("hidden");
+        }
 
-        operatoreInput.value = operatore;
+
+        if (counterPage) {
+            counterPage.classList.remove("hidden");
+        }
+
+
+        if (nomeBox) {
+            nomeBox.textContent = operatore;
+        }
+
+
+        if (dataBox) {
+            dataBox.textContent =
+                new Date().toLocaleDateString(
+                    "it-IT"
+                );
+        }
 
     }
+
+
 
 
 
@@ -202,6 +248,28 @@ function registra(tipo) {
     }
 
 
+    const oggi = dataOggi();
+
+
+
+    // crea giornata se non esiste
+
+    if (!evento.giornate[oggi]) {
+
+
+        evento.giornate[oggi] = {
+
+            stato:"aperta",
+
+            operatore:operatore,
+
+            registrazioni:[]
+
+        };
+
+    }
+
+
 
     const registrazione = {
 
@@ -209,11 +277,9 @@ function registra(tipo) {
         tipo: tipo,
 
 
-        operatore: operatore,
-
-
         ora:
-            new Date().toLocaleTimeString(
+            new Date()
+            .toLocaleTimeString(
                 "it-IT"
             )
 
@@ -222,9 +288,9 @@ function registra(tipo) {
 
 
 
-    storico.push(
-        registrazione
-    );
+    evento.giornate[oggi]
+    .registrazioni
+    .push(registrazione);
 
 
 
@@ -241,8 +307,6 @@ function registra(tipo) {
 
 
 }
-
-
 
 
 
@@ -406,8 +470,8 @@ function salvaDati() {
 
 
     localStorage.setItem(
-        "storico",
-        JSON.stringify(storico)
+        "evento",
+        JSON.stringify(evento)
     );
 
 
