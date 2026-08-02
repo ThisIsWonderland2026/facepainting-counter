@@ -23,8 +23,8 @@ body {
 
 .login-screen {
     width: 100%;
-    max-width: 420px;
-    padding: 40px 25px;
+    max-width: 600px;
+    padding: 40px;
     text-align: center;
 }
 
@@ -42,9 +42,9 @@ body {
 
 h1 {
     font-family: "Cormorant Garamond", serif;
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
@@ -83,16 +83,63 @@ input {
 
 button {
     width: 100%;
-    padding: 18px;
+    padding: 22px;
     border-radius: 8px;
     border: none;
     background: #c9a45c;
     color: #050505;
-    font-size: 18px;
+    font-size: 20px;
+    letter-spacing: 1px;
     font-weight: bold;
     text-transform: uppercase;
 }
 
 .hidden {
     display: none;
+}
+
+
+/* =============================
+   COUNTER PAGE
+============================= */
+
+.counter-screen {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 25px;
+    text-align: center;
+}
+
+
+.counter-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.counter-title h2 {
+    margin: 0;
+}
+
+
+.counter-title .icon {
+    font-size: 38px;
+}
+
+/* CARD COUNTER */
+
+.counter-card {
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid #c9a45c;
+
+    border-radius: 20px;
+
+    padding: 35px 25px;
+
+    margin: 25px 0;
+
 }
